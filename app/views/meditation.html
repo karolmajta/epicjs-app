@@ -1,0 +1,6 @@
+<h1>{{ meditation.name }}</h1>
+<div ng-repeat="koan in meditation.koans">
+    <h3>// {{ koan.name }}</h3>
+    <p style="white-space: pre;">{{ koan.hint }}</p>
+    <pre>{{ koan.code }}</pre>
+</div>
