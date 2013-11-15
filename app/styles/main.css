@@ -20,3 +20,91 @@ body {
     line-height: 1;
     letter-spacing: -1px;
 }
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: courier, monospace;
+    font-size: 22px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+h1 {
+    color: hotpink;
+    margin-bottom: 40px
+}
+
+h2 {
+    color: navy;
+}
+
+.koan-hint {
+    font-family: courier, monospace;
+    white-space: pre;
+    font-size: 22px;
+    line-height: 30px;
+    color: darkgreen;
+}
+
+.koan-code {
+    width: 880px;
+    border: 0;
+    border-radius: 0;
+    font-family: courier, monospace;
+    white-space: pre;
+    font-size: 22px;
+    line-height: 30px;
+    margin-bottom: 30px;
+    color: black;
+    background-color: lightgrey;
+}
+
+.koan-code.unknown {
+    background-color: lightgrey;
+}
+
+.koan-code.error, .koan-code.failed {
+    background-color: indianred;
+}
+
+.koan-code.solved {
+    background-color: lightgreen;
+}
+
+.koan-solution textarea {
+    width: 880px;
+    padding: 10px;
+    min-height: 200px;
+    resize: none;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background-color: lightskyblue;
+    font-size: 22px;
+    line-height: 30px;
+    color: #261a3b;
+    font-weight: bold;
+}
+
+div.koan-solution {
+    margin-bottom: 60px;
+}
+
+div.assertion-explanation {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 10px;
+    font-weight: bold;
+    width: 880px;
+}
+
+.assertion-explanation.error {
+    background-color: indianred;
+}
+
+.assertion-explanation.failed {
+    background-color: orange;
+}
+
+.btn-check-koan {
+    width: 900px;
+}

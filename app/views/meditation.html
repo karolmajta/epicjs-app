@@ -1,6 +1,21 @@
-<h1>{{ meditation.name }}</h1>
-<div ng-repeat="koan in meditation.koans">
-    <h3>// {{ koan.name }}</h3>
-    <p style="white-space: pre;">{{ koan.hint }}</p>
-    <pre>{{ koan.code }}</pre>
+<h1>// {{ meditation.name }}</h1>
+<div ng-repeat="koan in meditation.koans" ng-controller="koanCtrl" ng-init="initWithKoan(koan)">
+    <h2>// {{ koan.name }}</h2>
+    <p class="koan-hint">{{ koan.hint }}</p>
+    <pre class="koan-code"
+            ng-class="solutionStatus[0]">{{ koan.code }}</pre>
+    <div class="koan-solution">
+        <form>
+            <textarea ng-model="koan.solution">{{ koan.solution }}</textarea>
+            <div class="assertion-explanation"
+                 ng-show="solutionStatus[0] == 'failed' || solutionStatus[0] == 'error'"
+                 ng-class="solutionStatus[0]">
+                {{ solutionStatus[1] }}
+            </div>
+            <button class="btn btn-large btn-block btn-primary btn-check-koan"
+                    ng-click="runTest()">
+                Sprawdź...
+            </button>
+        </form>
+    </div>
 </div>

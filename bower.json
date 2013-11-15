@@ -2,6 +2,8 @@
   "name": "epicjs",
   "version": "0.0.0",
   "dependencies": {
+    "underscore": "~1.5.2",
+    "underscore.string": "~2.3.3",
     "angular": "~1.0.7",
     "json3": "~3.2.4",
     "jquery": "~1.9.1",
