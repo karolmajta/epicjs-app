@@ -1,5 +1,5 @@
 <h1>// {{ meditation.name }}</h1>
-<div ng-repeat="koan in meditation.koans" ng-controller="koanCtrl" ng-init="initWithKoan(koan)">
+<div ng-repeat="koan in meditation.koans" ng-controller="koanCtrl" ng-init="initWithKoan(meditation, koan)">
     <h2>// {{ koan.name }}</h2>
     <p class="koan-hint">{{ koan.hint }}</p>
     <pre class="koan-code"
@@ -13,7 +13,7 @@
                 {{ solutionStatus[1] }}
             </div>
             <button class="btn btn-large btn-block btn-primary btn-check-koan"
-                    ng-click="runTest()">
+                    ng-click="runTestAndPersist()">
                 Sprawdź...
             </button>
         </form>

@@ -1,17 +1,29 @@
 'use strict';
 
 angular.module('epicjsApp')
-  .controller('koanCtrl', function ($scope, koanRunner, AssertionError) {
+  .controller('koanCtrl', function (
+        $scope,
+        $log,
+        koanRunner,
+        AssertionError,
+        answerPersistor) {
 
-    $scope.initWithKoan = function (koan) {
+    $scope.initWithKoan = function (meditation, koan) {
+        $scope.meditation = meditation;
         $scope.koan = koan;
+        $scope.koan.solution = answerPersistor.getSolution($scope.meditation, $scope.koan);
         $scope.solutionStatus = ["unknown", null];
+        var cleanedSolution = _.str.trim($scope.koan.solution);
+        // run the test only if solution field is non-blank...
+        if (cleanedSolution) {
+            $scope.runTest();
+        }
     };
+
     $scope.runTest = function () {
         var result = koanRunner.testExpressionWithSolution($scope.koan.code, $scope.koan.solution);
         var testPassed = result[0];
         if (testPassed) {
-            console.log("testPassed");
             $scope.solutionStatus = ["solved", null];
         } else {
             var exceptionClass = result[1];
@@ -24,4 +36,14 @@ angular.module('epicjsApp')
             }
         }
     };
+
+    $scope.persistAnswer = function () {
+        answerPersistor.persist($scope.meditation, $scope.koan);
+    };
+
+    $scope.runTestAndPersist = function () {
+        $scope.runTest();
+        $scope.persistAnswer();
+    }
+
   });
