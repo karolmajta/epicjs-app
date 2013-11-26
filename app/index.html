@@ -47,7 +47,7 @@
                             <a ng-href="/#/login/">Zaloguj się</a>
                         </li>
                         <li ng-show="token.isPresent()">
-                            <a ng-href="/#/logout/">Wyloguj się</a>
+                            <a ng-href="/#/logout/">Wyloguj się ({{ token.getValue().user.username }}) {{ token.getValue().key }}</a>
                         </li>
                     </ul>
                 </div>
@@ -106,11 +106,12 @@
         <script src="scripts/controllers/koanCtrl.js"></script>
         <script src="scripts/services/koanRunner.js"></script>
         <script src="scripts/services/assertions.js"></script>
-        <script src="scripts/services/AnswerPersistor.js"></script>
+        <script src="scripts/services/AnonymousAnswerPersistor.js"></script>
         <script src="scripts/services/userToken.js"></script>
         <script src="scripts/controllers/NavbarController.js"></script>
         <script src="scripts/controllers/login.js"></script>
         <script src="scripts/controllers/logout.js"></script>
+        <script src="scripts/services/AuthenticatedAnswerPersistor.js"></script>
         <!-- endbuild -->
 
     <script src="config.js"></script>

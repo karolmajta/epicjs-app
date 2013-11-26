@@ -7,6 +7,7 @@ angular.module('epicjsApp', [
   'LocalStorageModule'
 ])
   .config(function ($routeProvider) {
+
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -31,4 +32,11 @@ angular.module('epicjsApp', [
       .otherwise({
         redirectTo: '/404/'
       });
+  })
+  .run(function ($http, userToken) {
+    if (userToken.isPresent()) {
+        var token = userToken.getValue().key;
+        $http.defaults.headers.common['Authorization'] = "Token " + token;
+        console.log($http.defaults.headers.common);
+    }
   });

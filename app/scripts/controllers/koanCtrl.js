@@ -3,15 +3,25 @@
 angular.module('epicjsApp')
   .controller('koanCtrl', function (
         $scope,
-        $log,
+        $location,
         koanRunner,
         AssertionError,
-        answerPersistor) {
+        anonymousAnswerPersistor,
+        authenticatedAnswerPersistor,
+        userToken) {
+
+    var selectPersistor = function() {
+        if (userToken.isPresent()) {
+            return authenticatedAnswerPersistor;
+        } else {
+            return anonymousAnswerPersistor;
+        }
+    };
 
     $scope.initWithKoan = function (meditation, koan) {
         $scope.meditation = meditation;
         $scope.koan = koan;
-        $scope.koan.solution = answerPersistor.getSolution($scope.meditation, $scope.koan);
+        $scope.koan.solution = selectPersistor().getSolution($scope.meditation, $scope.koan);
         $scope.solutionStatus = ["unknown", null];
         var cleanedSolution = _.str.trim($scope.koan.solution);
         // run the test only if solution field is non-blank...
@@ -38,7 +48,10 @@ angular.module('epicjsApp')
     };
 
     $scope.persistAnswer = function () {
-        answerPersistor.persist($scope.meditation, $scope.koan);
+        selectPersistor().persist($scope.meditation, $scope.koan).then(
+            function(result) { /* if successfully persisted just do nothing */ },
+            function(reason) { $location.path('/500') }
+        );
     };
 
     $scope.runTestAndPersist = function () {
