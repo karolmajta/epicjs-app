@@ -35,8 +35,8 @@ angular.module('epicjsApp', [
   })
   .run(function ($http, userToken) {
     if (userToken.isPresent()) {
-        var token = userToken.getValue().key;
-        $http.defaults.headers.common['Authorization'] = "Token " + token;
-        console.log($http.defaults.headers.common);
+      var token = userToken.getValue().key;
+      $http.defaults.headers.common['Authorization'] = 'Token ' + token;
+      console.log($http.defaults.headers.common);
     }
   });
