@@ -10,7 +10,6 @@ angular.module('epicjsApp')
       this.persist = function(meditation, koan) {
         var persisted = $q.defer();
         var newAnswer = new Answer();
-        console.log(koan);
         newAnswer.meditationId = meditation.slug;
         newAnswer.koanId = koan.slug;
         newAnswer.answer = koan.solution;

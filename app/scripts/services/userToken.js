@@ -19,7 +19,6 @@ angular.module('epicjsApp')
     this.purge = function() {
       $cookieStore.remove('token');
       delete $http.defaults.headers.common['Authorization'];
-      console.log($http.defaults.headers.common);
     };
 
   });
