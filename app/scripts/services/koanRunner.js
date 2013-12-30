@@ -1,7 +1,13 @@
 'use strict';
 
 angular.module('epicjsApp')
-  .service('koanRunner', function koanRunner(KOAN_PLACEHOLDER) {
+  .service('koanRunner', function koanRunner(
+        KOAN_PLACEHOLDER,
+        assert,
+        assertEquals,
+        assertNotEquals,
+        assertStrictEquals,
+        assertNotStrictEquals) {
     this.testExpressionWithSolution = function (baseExpr, solution) {
       var re = new RegExp(KOAN_PLACEHOLDER, 'g');
       var expr = baseExpr.replace(re, solution);
