@@ -38,7 +38,7 @@ angular.module('epicjsApp')
       } else {
         var exceptionClass = result[1];
         var message = result[2];
-        var explanation = exceptionClass.name.toString() + ': ' + message.toString();
+        var explanation = exceptionClass.prototype.name.toString() + ': ' + message.toString();
         if (exceptionClass === AssertionError) {
           $scope.solutionStatus = ['failed', explanation];
         } else {
